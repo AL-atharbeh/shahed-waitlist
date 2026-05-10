@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     locale: "ar_JO",
     images: ["/images/logo_shahadd.png"],
   },
+  icons: {
+    icon: "/images/logo_shahadd.png",
+  },
 };
 
 export default function RootLayout({
