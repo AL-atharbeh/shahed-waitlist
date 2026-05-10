@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
         </div>
         
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-          اشترِ الحين، <span className="text-emerald-600">ادفع لاحقاً</span>
+          اشترِ اللي <span className="text-emerald-600">نفسك فيه</span>، وادفع على راحتك
         </h1>
         
         <p className="text-lg text-gray-500 mb-2 font-medium">
@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
         </p>
         
         <p className="text-base text-gray-400">
-          قريباً في الأردن. كن من الأوائل وانضم للقائمة.
+          رح نكون معكم بالأردن قريباً جداً. انضم للقائمة وخليك أول واحد بيعرف.
         </p>
       </div>
     </section>

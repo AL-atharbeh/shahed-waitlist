@@ -2,16 +2,16 @@ import React from 'react';
 
 const steps = [
   {
-    title: 'تسوق من متاجرك المفضلة',
-    desc: 'اختر شهد عند الدفع في أي متجر مشترك.',
+    title: 'تسوق من متاجرك اللي بتحبها',
+    desc: 'كل اللي عليك تختار "شهد" لما توصل للدفع في المحلات المشتركة.',
   },
   {
-    title: 'ادفع 25% فقط',
-    desc: 'سدّد الربع الأول من قيمة مشترياتك فوراً.',
+    title: 'ادفع الربع بس',
+    desc: 'بتدفع أول دفعة (25%) من قيمة مشترياتك وأنت بالمحل.',
   },
   {
-    title: 'والباقي على 3 شهور',
-    desc: 'قسّم المتبقي على 3 أقساط بدون فوائد.',
+    title: 'والباقي قسّمه على 3 شهور',
+    desc: 'الباقي بيتوزع على 3 دفعات شهرية، بدون فوائد وبدون أي زيادة.',
   },
 ];
 
@@ -20,7 +20,7 @@ const HowItWorks: React.FC = () => {
     <section className="py-12 px-6 bg-gray-50">
       <div className="max-w-md mx-auto">
         <h2 className="text-2xl font-bold text-gray-900 mb-10 text-center">
-          كيف تستخدم <span className="text-emerald-600">شهد؟</span>
+          كيف بتستخدم <span className="text-emerald-600">شهد؟</span>
         </h2>
         
         <div className="space-y-8">
