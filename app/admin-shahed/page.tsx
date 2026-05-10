@@ -18,7 +18,7 @@ export default function AdminDashboard() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'shahed2025') {
+    if (password.trim() === 'A_hmad@99') {
       setIsAuthenticated(true);
       fetchData();
     } else {
@@ -29,7 +29,7 @@ export default function AdminDashboard() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/admin/waitlist?token=shahed2025`);
+      const response = await fetch(`/api/admin/waitlist?token=A_hmad@99`);
       const result = await response.json();
       if (Array.isArray(result)) {
         setData(result.reverse()); // Show newest first

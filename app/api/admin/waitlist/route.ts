@@ -8,9 +8,9 @@ export async function GET(request: Request) {
   try {
     // Simple authentication check using a header or query param
     const { searchParams } = new URL(request.url);
-    const token = searchParams.get('token');
+    const token = searchParams.get('token')?.trim();
     
-    if (token !== 'shahed2025') {
+    if (token !== 'A_hmad@99') {
       return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
     }
 
