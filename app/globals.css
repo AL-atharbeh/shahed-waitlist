@@ -20,58 +20,49 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0a1f10;
-  --emerald-950: #022c22;
-  --emerald-600: #059669;
-  --emerald-500: #10b981;
+  --foreground: #111827;
+  --primary: #059669;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: 'IBM Plex Sans Arabic', sans-serif;
-  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 @layer base {
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold font-sans;
+    @apply font-bold tracking-tight;
   }
 }
 
-.gold-gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-600;
+/* Simplified Animations */
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
 }
 
-.glass-card {
-  @apply bg-white/75 backdrop-blur-xl border border-white/60 shadow-premium;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-fade-in-up {
-  opacity: 0;
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Custom styles for form inputs */
+/* Clean Input Styles */
 input, select {
-  @apply bg-white/50 border border-emerald-100 rounded-2xl px-5 py-4 outline-none transition-all duration-300;
+  @apply w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-4 text-base transition-all duration-200 outline-none;
 }
 
 input:focus, select:focus {
-  @apply border-emerald-500 ring-4 ring-emerald-500/10 bg-white;
+  @apply border-emerald-600 bg-white ring-4 ring-emerald-50;
 }
 
 .btn-primary {
-  @apply bg-gradient-to-br from-emerald-800 to-emerald-600 text-white font-bold py-4 px-8 rounded-2xl shadow-lg shadow-emerald-900/20 hover:scale-[1.02] active:scale-[0.98] transition-all;
+  @apply bg-emerald-600 text-white font-bold py-4 px-6 rounded-xl transition-all active:scale-[0.98] disabled:opacity-50 shadow-sm hover:bg-emerald-700;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .container {
+    @apply px-6;
+  }
 }
