@@ -40,4 +40,4 @@ A luxury, production-grade landing page for "Shahed", a Buy Now Pay Later (BNPL)
 - `public/`: Static assets.
 
 ## License
-© 2025 شهد. جميع الحقوق محفوظة.
+© 2026 شهد. جميع الحقوق محفوظة.
