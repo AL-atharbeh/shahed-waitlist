@@ -2,54 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('/fonts/IBMPlexSansArabic-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('/fonts/IBMPlexSansArabic-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --primary: #C9A84C;
-  --background: #FAFAF8;
+  --background: #ffffff;
+  --foreground: #0a1f10;
+  --emerald-950: #022c22;
+  --emerald-600: #059669;
+  --emerald-500: #10b981;
 }
 
 body {
   background-color: var(--background);
-  color: #1a1a1a;
+  color: var(--foreground);
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
   overflow-x: hidden;
 }
 
 @layer base {
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold;
+    @apply font-bold font-sans;
   }
 }
 
-.fade-in {
+.gold-gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-600;
+}
+
+.glass-card {
+  @apply bg-white/75 backdrop-blur-xl border border-white/60 shadow-premium;
+}
+
+.animate-fade-in-up {
   opacity: 0;
-  animation: fadeIn 0.8s ease-out forwards;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.slide-up {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: slideUp 0.8s ease-out forwards;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Custom styles for form inputs to match luxury feel */
+/* Custom styles for form inputs */
 input, select {
-  @apply bg-white border border-gray-200 rounded-xl px-4 py-3 outline-none transition-all duration-200;
+  @apply bg-white/50 border border-emerald-100 rounded-2xl px-5 py-4 outline-none transition-all duration-300;
 }
 
 input:focus, select:focus {
-  @apply border-primary ring-2 ring-primary/20;
+  @apply border-emerald-500 ring-4 ring-emerald-500/10 bg-white;
 }
 
-button {
-  @apply transition-all duration-300 active:scale-95;
+.btn-primary {
+  @apply bg-gradient-to-br from-emerald-800 to-emerald-600 text-white font-bold py-4 px-8 rounded-2xl shadow-lg shadow-emerald-900/20 hover:scale-[1.02] active:scale-[0.98] transition-all;
 }
