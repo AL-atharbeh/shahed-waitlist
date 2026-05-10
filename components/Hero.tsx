@@ -9,9 +9,9 @@ const Hero: React.FC = () => {
         </h1>
 
         <div className="space-y-4 mb-10">
-          {/* <h2 className="text-3xl md:text-5xl font-bold text-gray-900 slide-up" style={{ animationDelay: '0.2s' }}>
-            اشترِ الحين، ادفع على راحتك
-          </h2> */}
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 slide-up" style={{ animationDelay: '0.2s' }}>
+            اشترِ الحين
+          </h2>
           <h3 className="text-xl md:text-2xl text-gray-500 font-medium tracking-wide slide-up" style={{ animationDelay: '0.3s' }}>
             Buy Now, Pay in 4 — Zero Interest
           </h3>
