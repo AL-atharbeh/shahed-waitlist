@@ -86,7 +86,15 @@ const WaitlistForm: React.FC = () => {
             <option value="عمّان">عمّان</option>
             <option value="إربد">إربد</option>
             <option value="الزرقاء">الزرقاء</option>
-            <option value="أخرى">أخرى</option>
+            <option value="البلقاء">البلقاء</option>
+            <option value="مادبا">مادبا</option>
+            <option value="الكرك">الكرك</option>
+            <option value="معان">معان</option>
+            <option value="العقبة">العقبة</option>
+            <option value="المفرق">المفرق</option>
+            <option value="جرش">جرش</option>
+            <option value="عجلون">عجلون</option>
+            <option value="الطفيلة">الطفيلة</option>
           </select>
         </div>
 
