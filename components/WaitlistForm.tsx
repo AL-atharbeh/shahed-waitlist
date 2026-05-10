@@ -2,7 +2,11 @@
 
 import React, { useState } from 'react';
 
-const WaitlistForm: React.FC = () => {
+interface WaitlistFormProps {
+  lang: 'ar' | 'en';
+}
+
+const WaitlistForm: React.FC<WaitlistFormProps> = ({ lang }) => {
   const [formData, setFormData] = useState({
     phone: '',
     store: '',
@@ -12,6 +16,37 @@ const WaitlistForm: React.FC = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
 
+  const content = {
+    ar: {
+      phoneLabel: 'رقم تلفونك',
+      storeLabel: 'شو المحل اللي حاب تشتري منه؟',
+      cityLabel: 'إنت بأي محافظة؟',
+      submitBtn: 'سجل معنا هسا',
+      loading: 'جاري التحميل...',
+      successTitle: 'تم! سجلنا اسمك عندنا',
+      successSub: 'رح نتواصل معك على الواتساب قريباً جداً.',
+      errorPhone: 'يرجى إدخال رقم هاتف صح (07XXXXXXXX)',
+      errorGeneral: 'صار خطأ بسيط، جرب كمان شوي',
+      errorNetwork: 'تأكد من النت عندك وجرب مرة ثانية',
+      cities: ["عمّان", "إربد", "الزرقاء", "البلقاء", "مادبا", "الكرك", "معان", "العقبة", "المفرق", "جرش", "عجلون", "الطفيلة"]
+    },
+    en: {
+      phoneLabel: 'Your Phone Number',
+      storeLabel: 'Which store do you want to buy from?',
+      cityLabel: 'Which city are you in?',
+      submitBtn: 'Join Now',
+      loading: 'Loading...',
+      successTitle: "Success! You're on the list",
+      successSub: "We'll contact you via WhatsApp very soon.",
+      errorPhone: 'Please enter a valid phone number (07XXXXXXXX)',
+      errorGeneral: 'Something went wrong, please try again',
+      errorNetwork: 'Check your internet connection and try again',
+      cities: ["Amman", "Irbid", "Zarqa", "Balqa", "Madaba", "Karak", "Ma'an", "Aqaba", "Mafraq", "Jerash", "Ajloun", "Tafileh"]
+    }
+  };
+
+  const t = content[lang];
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -19,7 +54,7 @@ const WaitlistForm: React.FC = () => {
 
     const phoneRegex = /^07[789]\d{7}$/;
     if (!phoneRegex.test(formData.phone)) {
-      setError('يرجى إدخال رقم هاتف صح (07XXXXXXXX)');
+      setError(t.errorPhone);
       setLoading(false);
       return;
     }
@@ -32,9 +67,9 @@ const WaitlistForm: React.FC = () => {
       });
       const data = await response.json();
       if (data.success) setSuccess(true);
-      else setError(data.message || 'صار خطأ بسيط، جرب كمان شوي');
+      else setError(t.errorGeneral);
     } catch (err) {
-      setError('تأكد من النت عندك وجرب مرة ثانية');
+      setError(t.errorNetwork);
     } finally {
       setLoading(false);
     }
@@ -44,8 +79,8 @@ const WaitlistForm: React.FC = () => {
     return (
       <div className="max-w-md mx-auto py-12 px-6 text-center fade-in">
         <div className="text-4xl mb-4">🎉</div>
-        <h3 className="text-2xl font-bold text-gray-900 mb-2">تم! سجلنا اسمك عندنا</h3>
-        <p className="text-gray-500">رح نتواصل معك على الواتساب قريباً جداً.</p>
+        <h3 className="text-2xl font-bold text-gray-900 mb-2">{t.successTitle}</h3>
+        <p className="text-gray-500">{t.successSub}</p>
       </div>
     );
   }
@@ -54,7 +89,7 @@ const WaitlistForm: React.FC = () => {
     <div className="max-w-md mx-auto px-6 pb-12 fade-in">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-xs font-bold text-gray-400 uppercase mb-2 mr-1">رقم تلفونك</label>
+          <label className={`block text-xs font-bold text-gray-400 uppercase mb-2 ${lang === 'ar' ? 'mr-1' : 'ml-1'}`}>{t.phoneLabel}</label>
           <input
             type="tel"
             placeholder="07XXXXXXXX"
@@ -67,10 +102,10 @@ const WaitlistForm: React.FC = () => {
         </div>
 
         <div>
-          <label className="block text-xs font-bold text-gray-400 uppercase mb-2 mr-1">شو المحل اللي حاب تشتري منه؟</label>
+          <label className={`block text-xs font-bold text-gray-400 uppercase mb-2 ${lang === 'ar' ? 'mr-1' : 'ml-1'}`}>{t.storeLabel}</label>
           <input
             type="text"
-            placeholder="مثلاً: زارا، أيكيا، سيتي مول..."
+            placeholder={lang === 'ar' ? "مثلاً: زارا، أيكيا، سيتي مول..." : "e.g. Zara, IKEA, City Mall..."}
             required
             value={formData.store}
             onChange={(e) => setFormData({ ...formData, store: e.target.value })}
@@ -78,30 +113,21 @@ const WaitlistForm: React.FC = () => {
         </div>
 
         <div>
-          <label className="block text-xs font-bold text-gray-400 uppercase mb-2 mr-1">إنت بأي محافظة؟</label>
+          <label className={`block text-xs font-bold text-gray-400 uppercase mb-2 ${lang === 'ar' ? 'mr-1' : 'ml-1'}`}>{t.cityLabel}</label>
           <select
             value={formData.city}
             onChange={(e) => setFormData({ ...formData, city: e.target.value })}
           >
-            <option value="عمّان">عمّان</option>
-            <option value="إربد">إربد</option>
-            <option value="الزرقاء">الزرقاء</option>
-            <option value="البلقاء">البلقاء</option>
-            <option value="مادبا">مادبا</option>
-            <option value="الكرك">الكرك</option>
-            <option value="معان">معان</option>
-            <option value="العقبة">العقبة</option>
-            <option value="المفرق">المفرق</option>
-            <option value="جرش">جرش</option>
-            <option value="عجلون">عجلون</option>
-            <option value="الطفيلة">الطفيلة</option>
+            {t.cities.map((city) => (
+              <option key={city} value={city}>{city}</option>
+            ))}
           </select>
         </div>
 
         {error && <p className="text-red-500 text-sm font-bold text-center">{error}</p>}
 
         <button type="submit" disabled={loading} className="btn-primary w-full mt-2">
-          {loading ? 'جاري التحميل...' : 'سجل معنا هسا'}
+          {loading ? t.loading : t.submitBtn}
         </button>
       </form>
     </div>
